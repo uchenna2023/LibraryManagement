@@ -13,6 +13,7 @@ public class Users {
     private String fullName;
     @Min(value = 8, message = "minimum age is 8 years old")
     @Max(value = 70, message = "maximum year is 70 years old")
+    @NotEmpty(message = "age must not be empty")
     private  int age;
     @Column(unique = true)
     @Email(message = "Enter a valid email address")

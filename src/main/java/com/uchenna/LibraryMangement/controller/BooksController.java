@@ -23,6 +23,21 @@ public class BooksController {
     public BooksController(BooksService bookService){
         this.booksService = bookService;
     }
+    @PostMapping("/book/{id}")
+    public ResponseEntity<Books> findBookbyId(@PathVariable Long id) throws BookNotFoundException {
+        return new ResponseEntity<>(booksService.getById(id),HttpStatus.FOUND);
+
+    }
+    @PostMapping("/book/{title}")
+    public ResponseEntity<List<Books>> findBookByTitle(@PathVariable String title){
+        return new ResponseEntity<>(booksService.getByTitle(title),HttpStatus.FOUND);
+    }
+
+    @PostMapping("/book/{isbn}")
+    public ResponseEntity<Books> findBookByIsbn(@PathVariable String isbn){
+        return new ResponseEntity<>(booksService.getByIsbn(isbn),HttpStatus.FOUND);
+    }
+
     @PostMapping("/book")
     public ResponseEntity<String> addMyBook(@RequestBody Books books){
         return new ResponseEntity<>(booksService.addBook(books), HttpStatus.CREATED);
@@ -46,7 +61,7 @@ public class BooksController {
     }
 
     @DeleteMapping("/book/{isbn}")
-    public ResponseEntity<String>  deleteByIsbn(String isbn){
+    public ResponseEntity<String>  deleteByIsbn(@PathVariable String isbn){
 
         return new ResponseEntity<>(booksService.deleteByIsbn(isbn),HttpStatus.OK);
     }

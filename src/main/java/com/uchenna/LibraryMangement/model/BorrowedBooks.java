@@ -15,7 +15,7 @@ public class BorrowedBooks {
     @JoinColumn(name = "user_id")
     private Users users;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true )
+    @OneToOne()
     @JoinColumn(name = "book_id")
     private Books books;
 

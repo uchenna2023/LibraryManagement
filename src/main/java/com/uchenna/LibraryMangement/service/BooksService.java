@@ -63,6 +63,8 @@ public class BooksService {
         borrowed.setTitle(borrowed.getTitle());
         borrowed.setBooks(borrowed.getBooks());
         borrowed.setUsers(borrowed.getUsers());
+
+
         BorrowedBooks saveBorrowed = borrowedBooksRepository.save(borrowed);
 
 
@@ -92,6 +94,18 @@ public class BooksService {
         return "Deleted";
 
     }
+
+    public List<Books> getByTitle(String title){
+        List<Books> bookTitle = (List<Books>) booksRepository.findByTitle(title);
+        return bookTitle;
+
+    }
+
+    public Books getByIsbn(String isbn){
+        Books book = booksRepository.findByIsbn(isbn);
+        return book;
+    }
+
 
 
 

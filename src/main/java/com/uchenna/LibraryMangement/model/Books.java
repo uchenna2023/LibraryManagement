@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
-public class Books {
+public  class  Books {
 
 
     @Id
@@ -24,8 +24,11 @@ public class Books {
     //@UniqueElements
     private String isbn;
     private String year;
-    //@OneToOne(mappedBy = "books")
-    //private BorrowedBooks borrowedBook;
+    private boolean isBorrowed;
+    @OneToOne(mappedBy = "books")
+    private BorrowedBooks borrowedBook;
+
+
 
     public Books(){
 
@@ -36,6 +39,7 @@ public class Books {
         this.author = author;
         this.isbn = isbn;
         this.year = year;
+        this.isBorrowed = false;
     }
 
 
@@ -79,6 +83,8 @@ public class Books {
     }
 
 
+
+
     public String getTitle() {
         return title;
     }
@@ -97,6 +103,14 @@ public class Books {
 
     public String getIsbn() {
         return isbn;
+    }
+
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        isBorrowed = borrowed;
     }
 
     public void setIsbn(String isbn) {
