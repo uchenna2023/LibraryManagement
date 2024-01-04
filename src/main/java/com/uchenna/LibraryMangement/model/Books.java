@@ -39,40 +39,16 @@ public  class  Books {
         this.author = author;
         this.isbn = isbn;
         this.year = year;
-        this.isBorrowed = false;
+        //this.isBorrowed = true;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        isBorrowed =false;
     }
 
 
-    /*@PreRemove
-    private void removeBookAssociation(){
 
-
-
-
-        borrowedBook.getBooks().setTitle(null);
-        borrowedBook.getBooks().setId(null);
-        borrowedBook.getBooks().setYear(null);
-        borrowedBook.getBooks().setIsbn(null);
-        borrowedBook.getBooks().setAuthor(null);
-
-        this.setId(null);
-        this.setIsbn(null);
-        this.setAuthor(null);
-        this.setTitle(null);
-        this.setYear(null);
-        BorrowedBooks bb = null;
-        Books book = null;
-        if(bb != null){
-           bb.setBooks(null);
-        }
-        if(book != null){
-            book.setId(null);
-            book.setAuthor(null);
-            book.setIsbn(null);
-            book.setYear(null);
-            book.setTitle(null);
-        }
-    }*/
 
     public Long getId() {
         return id;

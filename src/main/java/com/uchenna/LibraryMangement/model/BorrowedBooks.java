@@ -42,6 +42,14 @@ public class BorrowedBooks {
         return null;
     }
 
+    public Books hasBeenBorrow( Books books){
+        if(books.isBorrowed()){
+            books.setBorrowed(true);
+        }
+        return books;
+
+    }
+
     public String getTitle() {
         return title;
     }

@@ -57,14 +57,15 @@ public class BooksService {
     public BorrowedBooks borrowBook(Long userId, Long bookId) throws BookNotFoundException, UserNotFoundException {
         Books bookToBeBorrowed = booksRepository.findById(bookId).orElseThrow(()-> new BookNotFoundException("book not found"));
         Users userToBeBorrowed = usersRepository.findById(userId).orElseThrow(()-> new UserNotFoundException("user not found"));
+
+        bookToBeBorrowed.setBorrowed(true);
+        booksRepository.save(bookToBeBorrowed);
         BorrowedBooks borrowed = new BorrowedBooks(bookToBeBorrowed, userToBeBorrowed);
 
         borrowed.setAuthor(borrowed.getAuthor());
         borrowed.setTitle(borrowed.getTitle());
         borrowed.setBooks(borrowed.getBooks());
         borrowed.setUsers(borrowed.getUsers());
-
-
         BorrowedBooks saveBorrowed = borrowedBooksRepository.save(borrowed);
 
 
